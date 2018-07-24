@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <button type="button" name="button" onclick="console.log('clicked)')">clickme</button>
+
+    <script type="text/javascript">
+    function readFile(file) {
+      return new Promise((resolve, reject) => {
+        setTimeout(resolve,2000,file);
+      });
+    }
+    function* gen(args) {
+      for (var i = 0; i < args.length; i++) {
+        yield readFile(args[i]);
+      }
+    }
+  function wrap(ar) {
+
+var a=gen(ar);
+let b=a.next();
+function loop() {
+  b.value.then(function (data) {
+    console.log(data);
+    console.log(b=a.next());
+    if(!b.done){loop();}
+    else{console.log('done');return }
+  })
+}
+loop();
+}
+wrap([1,2,3,4,5,6,7,8,9,10])
+    </script>
+  </body>
+</html>
