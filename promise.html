@@ -18,21 +18,20 @@
         yield readFile(args[i]);
       }
     }
-  function wrap(ar) {
-
-var a=gen(ar);
-let b=a.next();
-function loop() {
-  b.value.then(function (data) {
-    console.log(data);
-    console.log(b=a.next());
-    if(!b.done){loop();}
-    else{console.log('done');return }
-  })
-}
-loop();
-}
-wrap([1,2,3,4,5,6,7,8,9,10])
+    function wrap(ar) {
+      var a=gen(ar);
+      let b=a.next();
+      function loop() {
+        b.value.then(function (data) {
+          console.log(data);
+          console.log(b=a.next());
+          if(!b.done){loop();}
+          else{console.log('done');return }
+        })
+      }
+      loop();
+    }
+    wrap([1,2,3,4,5,6,7,8,9,10]);
     </script>
   </body>
 </html>
